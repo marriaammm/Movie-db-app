@@ -1,1 +1,42 @@
-<p>people-details works!</p>
+@if (person()) {
+    <div class="person-details">
+        <div class="profile-header">
+            @if (person()?.profile_path) {
+            <img [src]="movieApiService.getImageUrl(person()?.profile_path, 'w500')" 
+                [alt]="person()?.name"
+                class="profile-image" 
+                />
+            } @else {
+            <div class="profile-image no-image"></div>
+            }
+        </div>
+    
+        <div class="content">
+            <div class="basic-info">
+                <h1>{{ person()?.name }}</h1>
+                
+                @if (person()?.original_name && person()?.original_name !== person()?.name) {
+                <h2 class="original-name">{{ person()?.original_name }}</h2>
+                }
+    
+                <div class="metadata">
+                    @if (person()?.known_for_department) {
+                    <span class="metadata-item">
+                        {{ person()?.known_for_department }}
+                    </span>
+                    }
+    
+                    <span class="metadata-item">
+                        {{ getGenderText(person()?.gender) }}
+                    </span>
+    
+                    <span class="metadata-item">
+                        Popularity: {{ person()?.popularity | number:'1.1-1' }}
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    } @else {
+    <div class="loading">Loading person details...</div>
+    }

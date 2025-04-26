@@ -1,0 +1,100 @@
+h1 {
+    color: #fff;
+    font-size: 2rem;
+    margin: 20px 0;
+    padding: 0 20px;
+}
+
+.people-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 25px;
+    padding: 20px;
+}
+
+.person-card {
+    transition: transform 0.3s ease;
+    text-align: center;
+}
+
+.person-card:hover {
+    transform: scale(1.03);
+}
+
+.person-image {
+    width: 100%;
+    aspect-ratio: 2/3;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.person-name {
+    font-size: 1rem;
+    margin: 5px 0;
+    color: #fff;
+}
+
+.person-department {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.loading {
+    color: rgba(255, 255, 255, 0.8);
+    text-align: center;
+    padding: 40px;
+    font-size: 1.2rem;
+}
+
+@media (max-width: 768px) {
+    .people-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    .people-grid {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+        gap: 15px;
+        padding: 15px;
+    }
+
+    .person-name {
+        font-size: 0.9rem;
+    }
+}
+
+.loading:after {
+    content: ' .';
+    animation: dots 1.5s steps(5, end) infinite;
+}
+
+@keyframes dots {
+
+    0%,
+    20% {
+        color: rgba(0, 0, 0, 0);
+        text-shadow: .25em 0 0 rgba(0, 0, 0, 0), .5em 0 0 rgba(0, 0, 0, 0);
+    }
+
+    40% {
+        color: white;
+        text-shadow: .25em 0 0 rgba(0, 0, 0, 0), .5em 0 0 rgba(0, 0, 0, 0);
+    }
+
+    60% {
+        text-shadow: .25em 0 0 white, .5em 0 0 rgba(0, 0, 0, 0);
+    }
+
+    80%,
+    100% {
+        text-shadow: .25em 0 0 white, .5em 0 0 white;
+    }
+}

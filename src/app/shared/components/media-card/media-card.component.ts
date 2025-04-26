@@ -18,7 +18,7 @@ import { Media } from '../../../core/models/media.model';
 export class MediaCardComponent {
   media = input.required<Media>();
   // mediaType = input.required<'movie' | 'tv'>();
-  defaultPoster = '/public/images/gallary.png';
+  defaultPoster = '/public/images/gallery.png';
 
   constructor(protected _movieApiService: MovieApiService) {}
   getTitle(): string {
@@ -55,8 +55,15 @@ export class MediaCardComponent {
     }
   }
   getPosterUrl(): string {
-    const path = this.media().poster_path || 
-                (this.media().media_type === 'person' ? (this.media() as Person).profile_path : null);
+    const media = this.media();
+    let path: string | null | undefined;
+    
+    if (this.isPerson(media)) {
+      path = media.profile_path;
+    } else {
+      path = media.poster_path;
+    }
+    
     return path ? this._movieApiService.getImageUrl(path) : this.defaultPoster;
   }
   handleImageError() {

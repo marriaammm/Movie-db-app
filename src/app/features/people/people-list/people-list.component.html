@@ -1,1 +1,11 @@
-<p>people-list works!</p>
+<h1>Popular People</h1>
+
+@if (people()) {
+<div class="people-grid">
+    @for (person of people(); track person.id) {
+    <app-media-card [media]="person" />
+    }
+</div>
+} @else {
+<p>Loading people...</p>
+}

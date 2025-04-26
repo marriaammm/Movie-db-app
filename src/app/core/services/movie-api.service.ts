@@ -6,10 +6,7 @@ import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
 
-interface Genre {
-  id: number;
-  name: string;
-}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -57,7 +54,7 @@ export class MovieApiService {
 
   getPersonDetails(id: number): Observable<Person> {
     return this._httpClient
-    .get<Person>(`${this.baseUrl}/pe/${id}?api_key=${this.apikey}`);
+    .get<Person>(`${this.baseUrl}/person/${id}?api_key=${this.apikey}`);
   }
 
   getImageUrl(path: string | null| undefined, size: string = 'w500'): string {
