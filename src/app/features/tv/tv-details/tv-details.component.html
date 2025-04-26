@@ -1,1 +1,44 @@
-<p>tv-details works!</p>
+@if (tvShow()) {
+    <div class="tv-details">
+        <div class="backdrop">
+            @if (tvShow()?.backdrop_path) {
+            <img 
+                [src]="movieApiService.getImageUrl(tvShow()?.backdrop_path, 'original')" 
+                [alt]="tvShow()?.name + ' backdrop'"
+                class="backdrop-image" />
+            }
+            <div class="backdrop-overlay"></div>
+        </div>
+    
+        <div class="content">
+            <div class="poster-section">
+                @if (tvShow()?.poster_path) {
+                <img 
+                    [src]="movieApiService.getImageUrl(tvShow()?.poster_path, 'w500')" 
+                    [alt]="tvShow()?.name + ' poster'"
+                    class="poster" />
+                }
+    
+                <div class="basic-info">
+                    <h1>
+                        {{ tvShow()?.name }}
+                        <span>({{ tvShow()?.first_air_date | date : "yyyy" }})</span>
+                    </h1>
+    
+                    <div class="metadata">
+                        <span class="rating">⭐ {{ tvShow()?.vote_average | number : "1.1-1" }}</span>
+                        <span>{{ tvShow()?.vote_count }} votes</span>
+                        <span>{{ tvShow()?.origin_country?.join(', ') }}</span>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="overview-section">
+                <h2>Overview</h2>
+                <p>{{ tvShow()?.overview }}</p>
+            </div>
+        </div>
+    </div>
+    } @else {
+    <div class="loading">Loading TV show details...</div>
+    }

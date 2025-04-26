@@ -1,1 +1,11 @@
-<p>tv-list works!</p>
+<h1>Popular TV Shows</h1>
+
+@if (tvShows()) {
+<div class="tv-grid">
+    @for (show of tvShows(); track show.id) {
+    <app-media-card [media]="show" />
+    }
+</div>
+} @else {
+<p>Loading TV shows...</p>
+}
