@@ -103,7 +103,6 @@
     font-size: 1.8rem;
     margin-bottom: 15px;
     color: #4fc3f7;
-    /* TV accent color */
 }
 
 .loading {
@@ -154,13 +153,10 @@
 @keyframes fadeIn {
     from {
         opacity: 0;
+        transform: translateY(20px);
     }
-
     to {
         opacity: 1;
+        transform: translateY(0);
     }
-}
-
-.tv-details {
-    animation: fadeIn 0.5s ease-in;
 }
