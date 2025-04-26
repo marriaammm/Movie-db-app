@@ -1,1 +1,27 @@
-<p>media-card works!</p>
+<div class="media-card" [routerLink]="getRouterLink()">
+    <div class="poster-container">
+        <img 
+        [src]="getPosterUrl()" 
+        [alt]="getTitle()"
+        class="poster"
+        (error)="handleImageError()"
+    >
+        @if (media().adult) {
+        <div class="adult-badge">18+</div>
+        }
+    </div>
+    <div class="info">
+        <h3>{{ getTitle() }}</h3>
+        <div class="details">
+            <div class="rating">
+                <span>⭐ {{ media().vote_average?.toFixed(1) }}</span>
+                <span>({{ media().vote_count }} votes)</span>
+            </div>
+            @if (getReleaseDate()) {
+            <div class="release-date">
+                {{ getReleaseDate() | date : "yyyy" }}
+            </div>
+            }
+        </div>
+    </div>
+</div>

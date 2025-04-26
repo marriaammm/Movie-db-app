@@ -1,1 +1,10 @@
-<p>movie-list works!</p>
+<h1>Popular Movies</h1>
+@if (movies.length > 0) {
+<div class="movie-grid">
+    @for (movie of movies; track movie.id) {
+    <app-media-card [media]="movie" />
+    }
+</div>
+} @else {
+<p>Loading movies...</p>
+}

@@ -1,1 +1,43 @@
-<p>movie-details works!</p>
+@if (movie()) {
+    <div class="movie-details">
+        <div class="backdrop">
+            @if (movie()?.backdrop_path) {
+            <img 
+                [src]="movieService.getImageUrl(movie()?.backdrop_path, 'original')" 
+                [alt]="movie()?.title + ' backdrop'"
+                class="backdrop-image" />
+            }
+            <div class="backdrop-overlay"></div>
+        </div>
+    
+        <div class="content">
+            <div class="poster-section">
+                @if (movie()?.poster_path) {
+                <img 
+                    [src]="movieService.getImageUrl(movie()?.poster_path, 'w500')" 
+                    [alt]="movie()?.title + ' poster'"
+                    class="poster" />
+                }
+    
+                <div class="basic-info">
+                    <h1>
+                        {{ movie()?.title }}
+                        <span>({{ movie()?.release_date | date : "yyyy" }})</span>
+                    </h1>
+    
+                    <div class="metadata">
+                        <span class="rating">⭐ {{ movie()?.vote_average | number : "1.1-1" }}</span>
+                        <span>{{ movie()?.vote_count }} votes</span>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="overview-section">
+                <h2>Overview</h2>
+                <p>{{ movie()?.overview }}</p>
+            </div>
+        </div>
+    </div>
+    } @else {
+    <div class="loading">Loading movie details...</div>
+    }
